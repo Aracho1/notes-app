@@ -42,7 +42,3 @@ function expect(value) {
     }
   }
 }
-
-
-let name = new Name();
-console.log("testing the change method:", expect(name.name).change("Sarah", "Timmy", (name.changeName("Boris"))));
