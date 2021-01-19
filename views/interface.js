@@ -4,10 +4,3 @@ document.getElementById("create-note").onclick = function() {
     entry.appendChild(document.createTextNode(note))
     document.getElementById("list").appendChild(entry);
 }
-
-/*
-function myFunction() {
-    var x = document.getElementById("myText").value;
-    document.getElementById("demo").innerHTML = x;
-} 
-*/
