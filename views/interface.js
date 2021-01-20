@@ -17,14 +17,14 @@ document.getElementById("create-note").onclick = function() {
 showFullNoteOnClick()
 function showFullNoteOnClick(){
   window.addEventListener("hashchange", function(){
-    var hash = this.location.hash
-    var hashToString = hash.replace(/\%20/g, ' ');
-    var string = hashToString.replace('#', '');
-    console.log(notebook)
-    console.log(notebook[string])
-    var element = document.createElement('p');
+    let hash = this.location.hash
+    let div = document.getElementById("content")
+    div.innerHTML = ''
+    let hashToString = hash.replace(/\%20/g, ' ');
+    let string = hashToString.replace('#', '');
+    let element = document.createElement('p');
     element.appendChild(document.createTextNode(notebook[string]));
-    document.getElementById("content").appendChild(element);
+    div.appendChild(element);
   });
 };
 
