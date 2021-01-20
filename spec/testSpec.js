@@ -12,3 +12,5 @@
 // console.log(expect(name.name).toEqual("Harry"))
 // name.changeName("Boris")
 // console.log(expect(name.name).toEqual("Boris"));
+
+clg("hello!");

@@ -1,47 +1,39 @@
-var notebook = [];
-document.getElementById("create-note").onclick = function() {
+var noteBook = {}
+var id = 1;
 
+document.getElementById("create-note").onclick = function() {
     var note = new Note;
-    var noteText = document.getElementById("myText").value;
-    note.create(noteText);
-    notebook[note.getNoteTitle()] = note.getNoteText()
-    var entry = document.createElement('li')
-    var tag = document.createElement('a')
-    let noteTitle = note.getNoteTitle();
-    tag.setAttribute("id",`${noteTitle}`);
-    tag.setAttribute("href",`#${noteTitle}`);
-    tag.appendChild(document.createTextNode(noteTitle));
-    tag.appendChild(entry);
-    document.getElementById("list").appendChild(tag);
+    id++;
+    var text = document.getElementById("myText").value;
+    note.create(text);
+    var noteTitle = note.getNoteTitle();
+    addToNoteBook(id, noteTitle, text);
+
+    var a = document.createElement('a');
+    a.appendChild(document.createTextNode(noteTitle));
+
+    var li = document.createElement('li');
+    li.appendChild(a);
+    li.setAttribute("id", id);
+    li.setAttribute("onclick", `showFullNotes(${id})`)
+
+    var list = document.getElementById("list")
+    list.appendChild(li);
 }
-showFullNoteOnClick()
-function showFullNoteOnClick(){
-  window.addEventListener("hashchange", function(){
-    var hash = this.location.hash
-    var hashToString = hash.replace(/\%20/g, ' ');
-    var string = hashToString.replace('#', '');
-    console.log(notebook)
-    console.log(notebook[string])
-    var element = document.createElement('p');
-    element.appendChild(document.createTextNode(notebook[string]));
-    document.getElementById("content").appendChild(element);
-  });
+
+function showFullNotes(id){
+  var content = document.getElementById("content")
+  var fullContent = findNote(id)
+  var z = document.createElement('p');
+  z.innerHTML = fullContent
+  content.appendChild(z);
+  
 };
 
-// function showCurrentNote (){
-//   showNote(getNoteFromUrl(window.location));
-// };
+function addToNoteBook(id, title, content) {
+  noteBook.id = [title, content];
+}
 
-// function getNoteFromUrl(`#${noteTitle}`){
-//   return location.hash.split("#")[1];
-// };
-//
-// function showNote(note){
-//   document
-//   .getElementById("content")
-//   .innerHTML = note.getNoteText();
-// };
-
-// document.getElementById("content").onclick = function() {
-//
-// }
+function findNote(id){
+  return noteBook['id'][1];
+}
