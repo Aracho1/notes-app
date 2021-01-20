@@ -1,18 +1,22 @@
-var notebook = [];
+let notebook = [];
+let id = 0;
+
 document.getElementById("create-note").onclick = function() {
 
-    var note = new Note;
-    var noteText = document.getElementById("myText").value;
-    note.create(noteText);
-    notebook[note.getNoteTitle()] = note.getNoteText()
+    let note = new Note;
+    id++;
+    let noteId = id;
+    let noteText = document.getElementById("myText").value;
+    note.create(noteId, noteText);
+    let noteTitle = note.getNoteTitle()
+    addToNoteBook(noteId, noteTitle, noteText)
     var entry = document.createElement('li')
-    var tag = document.createElement('a')
-    let noteTitle = note.getNoteTitle();
-    tag.setAttribute("id",`${noteTitle}`);
-    tag.setAttribute("href",`#${noteTitle}`);
+    let tag = document.createElement('a')
+    tag.setAttribute("id", noteId);
+    tag.setAttribute("href",`#${noteId}`);
     tag.appendChild(document.createTextNode(noteTitle));
-    tag.appendChild(entry);
-    document.getElementById("list").appendChild(tag);
+    entry.appendChild(tag);
+    document.getElementById("list").appendChild(entry);
 }
 showFullNoteOnClick()
 function showFullNoteOnClick(){
@@ -20,28 +24,23 @@ function showFullNoteOnClick(){
     let hash = this.location.hash
     let div = document.getElementById("content")
     div.innerHTML = ''
-    let hashToString = hash.replace(/\%20/g, ' ');
-    let string = hashToString.replace('#', '');
+    let string = hash.replace('#', '');
     let element = document.createElement('p');
-    element.appendChild(document.createTextNode(notebook[string]));
+    element.appendChild(document.createTextNode(findNote(string)));
     div.appendChild(element);
   });
 };
 
-// function showCurrentNote (){
-//   showNote(getNoteFromUrl(window.location));
-// };
 
-// function getNoteFromUrl(`#${noteTitle}`){
-//   return location.hash.split("#")[1];
-// };
-//
-// function showNote(note){
-//   document
-//   .getElementById("content")
-//   .innerHTML = note.getNoteText();
-// };
+function addToNoteBook(noteId, title, content) {
+  notebook.push({'id': noteId, 'title': title, 'content': content })
+}
 
-// document.getElementById("content").onclick = function() {
-//
-// }
+
+function findNote(id){
+  for(var i = 0; i < notebook.length; i++) {
+    if (notebook[i]['id'] == id) {
+      return notebook[i]['content']
+    }
+  }
+}

@@ -1,11 +1,13 @@
 class Note {
     constructor(){
+        this.noteId;
         this.noteText
         this.noteTitle
         this.TITLE_LIMIT = 20
     };
 
-    create(text){
+    create(id, text){
+        this.noteId = id
         this.noteText = text;
         this.noteTitle = this.truncate(text);
     };
@@ -19,6 +21,9 @@ class Note {
     };
 
     truncate(text){
-        return text.substring(0, this.TITLE_LIMIT) + "...";
+        if (text.length > 20) {
+            return text.substring(0, this.TITLE_LIMIT) + "...";
+        }
+        return text;
     };
 };
