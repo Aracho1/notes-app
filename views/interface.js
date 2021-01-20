@@ -8,19 +8,23 @@ document.getElementById("create-note").onclick = function() {
     var text = document.getElementById("myText").value;
     note.create(text);
     var noteTitle = note.getNoteTitle();
+
     addToNoteBook(noteID, noteTitle, text);
 
-    var a = document.createElement('a');
-    a.appendChild(document.createTextNode(noteTitle));
-
     var li = document.createElement('li');
-    li.appendChild(a);
+    li.appendChild(document.createTextNode(noteTitle));
     li.setAttribute("id", noteID);
     li.setAttribute("onclick", `showFullNotes(${noteID})`)
 
     var list = document.getElementById("list")
     list.appendChild(li);
 }
+
+
+function addToNoteBook(noteId, title, content) {
+  noteBook.push({'id': id, 'title': title, 'content':content })
+}
+
 
 function showFullNotes(id){
   clearNotes();
@@ -32,16 +36,6 @@ function showFullNotes(id){
   
 };
 
-function clearNotes() {
-  var firstChild = document.getElementById("content").firstChild
-  if (firstChild) {
-    firstChild.remove()
-  }
-}
-
-function addToNoteBook(noteId, title, content) {
-  noteBook.push({'id': id, 'title': title, 'content':content })
-}
 
 function findNote(id){
   for(var i = 0; i < noteBook.length; i++) {
@@ -51,4 +45,9 @@ function findNote(id){
   }
 }
 
-// [{id: id, text: text, title: title}]
+function clearNotes() {
+  var earlierNote = document.getElementById("content").firstChild
+  if (earlierNote) {
+    earlierNote.remove()
+  }
+}
