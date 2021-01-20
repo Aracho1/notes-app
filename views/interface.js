@@ -29,6 +29,19 @@ function showFullNoteOnClick(){
   });
 }; 
 
+function searchString(){
+  console.log("im between 32 and 33")
+  let myText = document.getElementById("myText").value 
+  console.log(myText) 
+  let bool = myText.replace(/\happy/g, 'sad');
+  console.log(bool)
+  // if(bool === "happy"){
+  //   return true
+  // } else {
+  //   return false
+  // }
+}
+
 
 
 

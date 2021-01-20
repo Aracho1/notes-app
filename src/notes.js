@@ -30,11 +30,14 @@ class Emojis {
 
     };
 
+
+
     textEmojis(name) {
         var EmojiCode = this.emojiList[name];
         var icon = String.fromCodePoint(EmojiCode);
         return icon
     };
+
 }; 
 
 let newEmjis = new Emojis
