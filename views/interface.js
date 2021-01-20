@@ -23,6 +23,7 @@ document.getElementById("create-note").onclick = function() {
 }
 
 function showFullNotes(id){
+  clearNotes();
   var content = document.getElementById("content")
   var fullContent = findNote(id)
   var z = document.createElement('p');
@@ -30,6 +31,13 @@ function showFullNotes(id){
   content.appendChild(z);
   
 };
+
+function clearNotes() {
+  var firstChild = document.getElementById("content").firstChild
+  if (firstChild) {
+    firstChild.remove()
+  }
+}
 
 function addToNoteBook(noteId, title, content) {
   noteBook.push({'id': id, 'title': title, 'content':content })
