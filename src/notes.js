@@ -19,6 +19,9 @@ class Note {
     };
 
     truncate(text){
-        return text.substring(0, this.TITLE_LIMIT) + "...";
+        if (text.length > 20) {
+            return text.substring(0, this.TITLE_LIMIT) + "...";
+        }
+        return text;
     };
 };

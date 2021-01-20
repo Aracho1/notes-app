@@ -1,5 +1,5 @@
 var noteBook = {}
-var id = 1;
+var id = 0;
 
 document.getElementById("create-note").onclick = function() {
     var note = new Note;
