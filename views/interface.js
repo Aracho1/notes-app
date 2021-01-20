@@ -13,7 +13,8 @@ document.getElementById("create-note").onclick = function() {
     tag.appendChild(document.createTextNode(noteTitle));
     tag.appendChild(entry);
     document.getElementById("list").appendChild(tag);
-}
+} 
+
 showFullNoteOnClick()
 function showFullNoteOnClick(){
   window.addEventListener("hashchange", function(){
@@ -26,7 +27,10 @@ function showFullNoteOnClick(){
     element.appendChild(document.createTextNode(notebook[string]));
     div.appendChild(element);
   });
-};
+}; 
+
+
+
 
 // function showCurrentNote (){
 //   showNote(getNoteFromUrl(window.location));
@@ -44,4 +48,6 @@ function showFullNoteOnClick(){
 
 // document.getElementById("content").onclick = function() {
 //
-// }
+// } 
+
+//console.log(String.fromCodePoint());
