@@ -14,26 +14,25 @@ document.getElementById("create-note").onclick = function() {
     
     // let entry = document.createElement('a')
     entry.setAttribute("id", noteId);
+    entry.setAttribute("onclick", `showFullNoteOnClick(${noteId})`)
     // entry.setAttribute("href",`#${noteId}`);
-    entry.setAttribute("class", "tabcontent")
+    // entry.setAttribute("class", "tabcontent")
     entry.appendChild(document.createTextNode(noteTitle));
     document.getElementById("list").appendChild(entry);
 }
-showFullNoteOnClick()
 function showFullNoteOnClick(noteId){
-    entry.onclick = showFullNoteOnClick(`${noteId}`);
-    window.addEventListener("click"
     // let hash = this.location.hash
-    let div = document.getElementById("content")
-    div.innerHTML = ''
+    let cont = document.getElementById("content")
+    cont.innerHTML = ''
     // let string = hash.replace('#', '');
+    var fullContent = findNote(noteId)
+    let div = document.createElement('div')
     let element = document.createElement('p');
-    let result = findNote(noteId)
-    let z =  document.createTextNode(result)
-    console.log(z)
-    element.appendChild(z);
-    
     div.appendChild(element);
+    div.setAttribute("class", "tabcontent")
+    element.innerHTML =  fullContent;
+    cont.appendChild(div);
+    
   // });
 };
 
