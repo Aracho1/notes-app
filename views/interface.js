@@ -10,25 +10,31 @@ document.getElementById("create-note").onclick = function() {
     note.create(noteId, noteText);
     let noteTitle = note.getNoteTitle()
     addToNoteBook(noteId, noteTitle, noteText)
-    var entry = document.createElement('li')
-    let tag = document.createElement('a')
-    tag.setAttribute("id", noteId);
-    tag.setAttribute("href",`#${noteId}`);
-    tag.appendChild(document.createTextNode(noteTitle));
-    entry.appendChild(tag);
+    var entry = document.createElement('button')
+    
+    // let entry = document.createElement('a')
+    entry.setAttribute("id", noteId);
+    // entry.setAttribute("href",`#${noteId}`);
+    entry.setAttribute("class", "tabcontent")
+    entry.appendChild(document.createTextNode(noteTitle));
     document.getElementById("list").appendChild(entry);
 }
 showFullNoteOnClick()
-function showFullNoteOnClick(){
-  window.addEventListener("hashchange", function(){
-    let hash = this.location.hash
+function showFullNoteOnClick(noteId){
+    entry.onclick = showFullNoteOnClick(`${noteId}`);
+    window.addEventListener("click"
+    // let hash = this.location.hash
     let div = document.getElementById("content")
     div.innerHTML = ''
-    let string = hash.replace('#', '');
+    // let string = hash.replace('#', '');
     let element = document.createElement('p');
-    element.appendChild(document.createTextNode(findNote(string)));
+    let result = findNote(noteId)
+    let z =  document.createTextNode(result)
+    console.log(z)
+    element.appendChild(z);
+    
     div.appendChild(element);
-  });
+  // });
 };
 
 

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../public/stylesheet.css">
     <title>Document</title>
 </head>
     <body>
@@ -10,9 +11,12 @@
 
             <textarea rows="4" cols="50" name="comment" form="usrform" id="myText" placeholder='Enter text here...'></textarea><br><br>
 
-            <button id="create-note">Create</button>
-
+            
+                <button id="create-note">Create</button>
+            
+            <div class="tab">
             <ul id="list"></ul>
+            </div>
             <ul id='content'></ul>
         <script src="../src/notes.js"></script>
         <script src="interface.js"></script>
