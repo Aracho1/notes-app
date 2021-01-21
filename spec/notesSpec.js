@@ -12,6 +12,10 @@ it('note is an instance of Note', function() {
 
 myNote.create(1, "Here is my first note")
 
-it('returns the note text', function() {
+it('getNoteText() returns the note text', function() {
   expect(myNote.getNoteText()).toEqual("Here is my first note")
+});
+
+it('getNoteTiTle() returns the first 20 characters', function() {
+  expect(myNote.getNoteTitle()).toEqual("Here is my first not...")
 });

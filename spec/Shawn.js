@@ -1,17 +1,19 @@
 console.log = function(message) {
   var li = document.createElement("p")
   var msg = document.createTextNode(message)
+  
   li.appendChild(msg)
   document.getElementById('result').appendChild(li);
+  
 };
 
 let testnum = 0;
+
 function it(label, callback) {
   testnum++;
   console.log("Test "+ `${testnum}: ${label}`)
   callback()
 }
-
 
 function expect(value) {
   return {
@@ -66,3 +68,4 @@ function expect(value) {
     }
   }
 }
+
