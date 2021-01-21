@@ -4,7 +4,7 @@ let notebook = [];
 let id = 0;
 
 document.getElementById("create-note").onclick = function() {
-
+    playAudio('sheep.mp3');
     let note = new Note;
     id++;
     let noteId = id;
@@ -17,21 +17,19 @@ document.getElementById("create-note").onclick = function() {
     var dateTime = date+' '+time;
     addToNoteBook(noteId, noteTitle, noteText, dateTime)
     var entry = document.createElement('button')
-    
-    // let entry = document.createElement('a')
     entry.setAttribute("id", noteId);
     entry.setAttribute("onclick", `showFullNoteOnClick(${noteId})`)
-    // entry.setAttribute("href",`#${noteId}`);
-    // entry.setAttribute("class", "tabcontent")
     entry.appendChild(document.createTextNode(noteTitle));
     document.getElementById("list").appendChild(entry);
+    document.getElementById("myText").value = "";
+
     
+
 }
 function showFullNoteOnClick(noteId){
-    // let hash = this.location.hash
     let cont = document.getElementById("content")
     cont.innerHTML = ''
-    // let string = hash.replace('#', '');
+    var fullContent = findNote(noteId)
     var found = findNote(noteId)
     let text = found['content']
     let time = found['time']
@@ -40,10 +38,7 @@ function showFullNoteOnClick(noteId){
     div.appendChild(element);
     div.setAttribute("class", "tabcontent")
     element.innerHTML =  "<p>"+text+"</p>" + time
-
     cont.appendChild(div);
-    
-  // });
 };
 
 
@@ -58,4 +53,35 @@ function findNote(id){
       return notebook[i]
     }
   }
+}
+
+function getPostData() {
+    return fetch("https://makers-emojify.herokuapp.com/", {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({"text": ":sheep:"})})
+    .then(response => {
+        console.log("1")
+        console.log(response.json)
+        return response.json();
+    })
+    .catch((error) => {
+        console.log("4");
+        console.error('Error:', error);
+    });
+}
+
+function renderPost(postData) {
+    console.log("3")
+    console.log(postData)
+    let postHeadingHTML = `<h1>${postData.emojified_text}</h1>`;
+    return `${postHeadingHTML}`;
+}
+
+getPostData().then(post => {
+    console.log("2")
+    console.log(post);
+let rendered = renderPost(post);
+document.getElementById("main").innerHTML = rendered;
+});    
+
+function playAudio(url) {
+  new Audio(url).play();
 }
