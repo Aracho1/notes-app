@@ -62,7 +62,7 @@ textarea {
 }
 
 .tab button:hover {
-  background-color: rgb(237, 234, 40);
+  background-color: rgba(244, 241, 98, 0.708);
 }
 
 .tab button.active {
