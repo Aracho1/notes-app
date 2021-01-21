@@ -56,7 +56,7 @@ function findNote(id){
 }
 
 function getPostData() {
-    return fetch("https://makers-emojify.herokuapp.com/", {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({"text": ":sheep:"})})
+    return fetch("https://makers-emojify.herokuapp.com/", {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({"text": ""})})
     .then(response => {
         console.log("1")
         console.log(response.json)
