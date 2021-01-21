@@ -1,46 +1,77 @@
 body {
-  background-image: linear-gradient(to bottom right, rgba(201, 96, 96, 0.664), rgba(199, 199, 69, 0.678)); 
+  text-align: center;
+  background-image: linear-gradient(-45deg, #a35943, #bd9043a6, #2d97bea2, #2eac8fa8), url("notes_background.png");
+  background-size: 2000px 4000px, cover;
+  animation: gradient 10s ease infinite;
 }
+
+h1 {
+  font-size: 50px;
+  font-weight: bold;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 75% 75%, 0% 0%;
+	}
+	50% {
+		background-position: 25% 25%, 0% 0%;
+	}
+	100% {
+		background-position: 75% 75%, 0% 0%;
+	}
+}
+
 .tab {
+  font-size: 0px;
+  /* display: inline-block; */
+  padding-top: 0px;
   float: left;
   border: 1px solid #ccc;
-  background-color: #f1f1f1;
+  background-color: #f1f1f192;
   width: 30%;
   height: 300px;
   overflow-y: scroll;
-  border-radius: 20px;
+  border-radius: 5px;
 }
 
+button {
+  float: center;
+  border-radius: 8px;
+}
 textarea {
+  background-color: #ffffff8e;
   width: 30%;
-  border-radius: 20px;
+  border-radius: 5px;
 }
 
 .tab button {
-  display: block;
-  background-color: inherit;
+  /* display: inline-block; */
+  background-color: rgb(255, 255, 255);
   color: black;
-  padding: 22px 16px;
+  padding: 20px 20px;
   width: 100%;
   border: none;
   outline: none;
   text-align: left;
   cursor: pointer;
   transition: 0.3s;
-  font-size: 150%; 
+  font-size: 20px; 
   font-weight: bold;
+  border-radius: 5px;
 }
 
 .tab button:hover {
-  background-color: #ddd;
+  background-color: rgb(237, 234, 40);
 }
 
 .tab button.active {
-  background-color: #ccc;
+  background-color: rgb(125, 123, 7);
 }
 
 /* Style the tab content */
 .tabcontent {
+  background-color: #ffffff8e;
   float: left;
   padding: 0px 12px;
   border: 1px solid #ccc;
@@ -48,11 +79,12 @@ textarea {
   border-left: none;
   height: 300px;
   overflow-y: scroll;
-  border-radius: 20px;
+  border-radius: 5px;
 }
 
 ul {
-  padding: 0;
+  padding-top: 0px;
+  padding-left: 0px;
 }
 
 #create-note {

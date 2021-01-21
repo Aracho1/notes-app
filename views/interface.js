@@ -19,6 +19,7 @@ document.getElementById("create-note").onclick = function() {
     // entry.setAttribute("class", "tabcontent")
     entry.appendChild(document.createTextNode(noteTitle));
     document.getElementById("list").appendChild(entry);
+    document.getElementById("myText").value = "";
 }
 function showFullNoteOnClick(noteId){
     // let hash = this.location.hash
