@@ -32,11 +32,10 @@ h1 {
 
 .tab {
   font-size: 0px;
-  /* display: inline-block; */
+  display: inline-block;
   padding-top: 0px;
   float: left;
   /* border: 1px solid #ccc;*/
-  background-color: blue;
   /* width: 30%;
   height: 300px; */
   /* overflow-y: scroll; */
@@ -46,7 +45,8 @@ h1 {
 button {
   float: center;
   border-radius: 8px;
-  background-color: none;
+  background-color: transparent;
+  font-family: 'Indie Flower', cursive;
 }
 
 
@@ -61,7 +61,7 @@ textarea {
 textarea:focus {outline: none; }
 
 .tab button {
-  /* display: inline-block; */
+  display: inline-block;
   /* background-color: rgb(255, 255, 255); */
   color: black;
   padding: 20px 20px;
@@ -74,6 +74,7 @@ textarea:focus {outline: none; }
   font-size: 20px; 
   font-weight: bold;
   border-radius: 5px;
+  margin-left: 400px;
 }
 
 .tab button:hover {
@@ -86,6 +87,7 @@ textarea:focus {outline: none; }
 
 /* Style the tab content */
 .tabcontent {
+  display: inline-block;
   /* background-color: #ffffff8e; */
   float: left;
   padding: 0px 12px;
@@ -95,7 +97,7 @@ textarea:focus {outline: none; }
   height: 300px;
   /* overflow-y: scroll; */
   border-radius: 5px;
-  margin-left: 200px;
+  margin-left: 500px;
 }
 
 ul {
