@@ -1,10 +1,18 @@
+function it(label, callback) {
+  console.log(`Test: ${label}`)
+  callback()
+}
+
+
 function expect(value) {
   return {
     toEqual: function(expected) {
       if (value == expected) {
-        return "Pass";
+        console.log("Pass") ;
+      } else {
+        console.log("Fail") ;
       }
-      return "Fail";
+      
     }, // add comma!!
     notToEqual: function(expected) {
       if (value != expected) {
