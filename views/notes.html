@@ -1,12 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    
+    <script>
+        function getPostData() {
+            // req,res,next
+            // res.header("Access-Control-Allow-Origin", "https://makers-emojify.herokuapp.com/");
+            // res.header("Access-Control-Allow-Headers", "X-Requested-With");
+            // next()
+            return fetch("https://makers-emojify.herokuapp.com/").then(response => {
+                return response.json();
+            
+        });
+    }
+        function renderPost(postData) {
+            let postHeadingHTML = `<h1>${postData.emojified_text}</h1>`;
+            return `${postHeadingHTML}`;
+        }
+
+        getPostData().then(post => {
+        let rendered = renderPost(post);
+        document.getElementById("main").innerHTML = rendered;
+        });    
+        
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
     <body>
         <h1> Notes </h1>
+
+        <div id="main">
+        </div>
 
             <textarea rows="4" cols="50" name="comment" form="usrform" id="myText" onkeypress="searchString()">Enter text here...</textarea><br><br>
 
@@ -16,6 +44,8 @@
             <ul id='content'></ul>
         <script src="../src/notes.js"></script>
         <script src="interface.js"></script>
+
+       
 
     </body>
 </html>
