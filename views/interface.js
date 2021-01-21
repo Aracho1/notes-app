@@ -1,3 +1,5 @@
+
+
 let notebook = [];
 let id = 0;
 
@@ -9,7 +11,11 @@ document.getElementById("create-note").onclick = function() {
     let noteText = document.getElementById("myText").value;
     note.create(noteId, noteText);
     let noteTitle = note.getNoteTitle()
-    addToNoteBook(noteId, noteTitle, noteText)
+    var today = new Date();
+    var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    var dateTime = date+' '+time;
+    addToNoteBook(noteId, noteTitle, noteText, dateTime)
     var entry = document.createElement('button')
     
     // let entry = document.createElement('a')
@@ -19,33 +25,37 @@ document.getElementById("create-note").onclick = function() {
     // entry.setAttribute("class", "tabcontent")
     entry.appendChild(document.createTextNode(noteTitle));
     document.getElementById("list").appendChild(entry);
+    
 }
 function showFullNoteOnClick(noteId){
     // let hash = this.location.hash
     let cont = document.getElementById("content")
     cont.innerHTML = ''
     // let string = hash.replace('#', '');
-    var fullContent = findNote(noteId)
+    var found = findNote(noteId)
+    let text = found['content']
+    let time = found['time']
     let div = document.createElement('div')
     let element = document.createElement('p');
     div.appendChild(element);
     div.setAttribute("class", "tabcontent")
-    element.innerHTML =  fullContent;
+    element.innerHTML =  "<p>"+text+"</p>" + time
+
     cont.appendChild(div);
     
   // });
 };
 
 
-function addToNoteBook(noteId, title, content) {
-  notebook.push({'id': noteId, 'title': title, 'content': content })
+function addToNoteBook(noteId, title, content, time) {
+  notebook.push({'id': noteId, 'title': title, 'content': content, 'time': time })
 }
 
 
 function findNote(id){
   for(var i = 0; i < notebook.length; i++) {
     if (notebook[i]['id'] == id) {
-      return notebook[i]['content']
+      return notebook[i]
     }
   }
 }

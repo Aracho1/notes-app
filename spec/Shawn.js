@@ -1,44 +1,71 @@
+console.log = function(message) {
+  var li = document.createElement("p")
+  var msg = document.createTextNode(message)
+  
+  li.appendChild(msg)
+  document.getElementById('result').appendChild(li);
+  
+};
+
+let testnum = 0;
+
+function it(label, callback) {
+  testnum++;
+  console.log("Test "+ `${testnum}: ${label}`)
+  callback()
+}
+
 function expect(value) {
   return {
     toEqual: function(expected) {
       if (value == expected) {
-        return "Pass";
+        console.log("⟶ Pass") 
       }
-      return "Fail";
+      else {
+        console.log("⟶ Fail")
+      }
+      
+      
     }, // add comma!!
     notToEqual: function(expected) {
       if (value != expected) {
-        return "Pass"
+        console.log("⟶ Pass") 
+      } else {
+        console.log("⟶ Fail")
       }
-      return "Fail"
     },
     toBe: function(expected) {
       if (value === expected) {
-        return "Pass";
+        console.log("⟶ Pass") 
+      } else {
+        console.log("⟶ Fail")
       }
-      return "Fail";
     },
     notToBe: function(expected) {
       if (value !== expected) {
-        return "Pass"
+        console.log("⟶ Pass") 
+      } else {
+        console.log("⟶ Fail")
       }
-      return "Fail"
     },
     toThrowWhen: function(expected) {
       if (value == expected) {
-        return "true"
+        console.log("⟶ Pass") 
+      } else {
+        console.log("⟶ Fail")
       }
-      throw "error";
     },
     change: function(expected, change, method) {
       if (value === expected) {
         var state1 = expected;
         if (method === change) {
-          return "Pass"
+          console.log("⟶ Pass") 
+        } else {
+          console.log("⟶ Fail")
         }
-        return "Fail"
       }
       throw ["Fail", "Initial state not equal to expected state"];
     }
   }
 }
+
