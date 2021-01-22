@@ -4,28 +4,27 @@ let notebook = [];
 let id = 0;
 
 document.getElementById("create-note").onclick = function() {
-    playAudio('sheep.mp3');
+    // playAudio("sheep.mp3");
     let note = new Note;
     id++;
     let noteId = id;
     let noteText = document.getElementById("myText").value;
-    note.create(noteId, noteText);
-    let noteTitle = note.getNoteTitle()
-    var today = new Date();
-    var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-    var dateTime = date+' '+time;
-    addToNoteBook(noteId, noteTitle, noteText, dateTime)
-    var entry = document.createElement('button')
-    entry.setAttribute("id", noteId);
-    entry.setAttribute("onclick", `showFullNoteOnClick(${noteId})`)
-    entry.appendChild(document.createTextNode(noteTitle));
-    document.getElementById("list").appendChild(entry);
-    document.getElementById("myText").value = "";
-    console.log(localStorage.setItem(noteId, noteText))
-    console.log(localStorage)
-    
-    
+    var emojifiedText = changeTextToEmoji(noteText).then(function(result) {
+      note.create(noteId, result);
+      let noteTitle = note.getNoteTitle()
+      var today = new Date();
+      var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+      var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+      var dateTime = date+' '+time;
+      addToNoteBook(noteId, noteTitle, result, dateTime)
+      var entry = document.createElement('button')
+      entry.setAttribute("id", noteId);
+      entry.setAttribute("onclick", `showFullNoteOnClick(${noteId})`)
+      entry.appendChild(document.createTextNode(noteTitle));
+      document.getElementById("list").appendChild(entry);
+      document.getElementById("myText").value = "";
+    });
+ 
 
 }
 function showFullNoteOnClick(noteId){
@@ -34,6 +33,7 @@ function showFullNoteOnClick(noteId){
     var fullContent = findNote(noteId)
     var found = findNote(noteId)
     let text = found['content']
+    // 
     let time = found['time']
     let div = document.createElement('div')
     let element = document.createElement('p');
@@ -50,41 +50,37 @@ function addToNoteBook(noteId, title, content, time) {
 
 
 function findNote(id){
-  var localNote = localStorage.getItem(localNote)
-  for(var i = 0; i < localNote.length; i++) {
-    if ((localNote)[i]['id'] == id) {
-      localStorage.getItem(localNote[i])
+  for(var i = 0; i < notebook.length; i++) {
+    if (notebook[i]['id'] == id) {
+      return notebook[i]
     }
   }
 }
 
-function getPostData() {
-    return fetch("https://makers-emojify.herokuapp.com/", {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({"text": ""})})
-    .then(response => {
-        console.log("1")
-        console.log(response.json)
-        return response.json();
-    })
-    .catch((error) => {
-        console.log("4");
-        console.error('Error:', error);
-    });
-}
+function changeTextToEmoji(text){
+  return getPostData(text).then(post => {
+    let rendered = renderPost(post);
+    return rendered
+  }).then(function(rendered) {
+    return rendered
 
-function renderPost(postData) {
-    console.log("3")
-    console.log(postData)
-    let postHeadingHTML = `<h1>${postData.emojified_text}</h1>`;
-    return `${postHeadingHTML}`;
-}
+  });
+};
 
-getPostData().then(post => {
-    console.log("2")
-    console.log(post);
-let rendered = renderPost(post);
-document.getElementById("main").innerHTML = rendered;
-});    
+
 
 function playAudio(url) {
   new Audio(url).play();
+}
+
+function getPostData(wholeText) {
+  return fetch("https://makers-emojify.herokuapp.com/", {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({"text": `${wholeText}`})})
+  .then(response => {
+      return response.json();
+  })
+}
+
+function renderPost(postData) {
+  let postHeadingHTML = postData.emojified_text;
+  return `${postHeadingHTML}`;
 }
