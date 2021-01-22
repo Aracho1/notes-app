@@ -9,21 +9,22 @@ document.getElementById("create-note").onclick = function() {
     id++;
     let noteId = id;
     let noteText = document.getElementById("myText").value;
-    note.create(noteId, noteText);
-    let noteTitle = note.getNoteTitle()
-    var today = new Date();
-    var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-    var dateTime = date+' '+time;
-    addToNoteBook(noteId, noteTitle, noteText, dateTime)
-    var entry = document.createElement('button')
-    entry.setAttribute("id", noteId);
-    entry.setAttribute("onclick", `showFullNoteOnClick(${noteId})`)
-    entry.appendChild(document.createTextNode(noteTitle));
-    document.getElementById("list").appendChild(entry);
-    document.getElementById("myText").value = "";
-
-    
+    var emojifiedText = changeTextToEmoji(noteText).then(function(result) {
+      note.create(noteId, result);
+      let noteTitle = note.getNoteTitle()
+      var today = new Date();
+      var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+      var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+      var dateTime = date+' '+time;
+      addToNoteBook(noteId, noteTitle, result, dateTime)
+      var entry = document.createElement('button')
+      entry.setAttribute("id", noteId);
+      entry.setAttribute("onclick", `showFullNoteOnClick(${noteId})`)
+      entry.appendChild(document.createTextNode(noteTitle));
+      document.getElementById("list").appendChild(entry);
+      document.getElementById("myText").value = "";
+    });
+ 
 
 }
 function showFullNoteOnClick(noteId){
@@ -32,16 +33,16 @@ function showFullNoteOnClick(noteId){
     var fullContent = findNote(noteId)
     var found = findNote(noteId)
     let text = found['content']
-    console.log(text)
-    let emojifiedText = changeTextToEmoji(text)
-    console.log(emojifiedText)
-    let time = found['time']
-    let div = document.createElement('div')
-    let element = document.createElement('p');
-    div.appendChild(element);
-    div.setAttribute("class", "tabcontent")
-    element.innerHTML =  "<p>"+emojifiedText+"</p>" + time
-    cont.appendChild(div);
+    // 
+    var emojifiedText = changeTextToEmoji(text).then(function(result) {
+      let time = found['time']
+      let div = document.createElement('div')
+      let element = document.createElement('p');
+      div.appendChild(element);
+      div.setAttribute("class", "tabcontent")
+      element.innerHTML =  "<p>"+result+"</p>" + time
+      cont.appendChild(div);
+    })
 };
 
 
@@ -59,17 +60,16 @@ function findNote(id){
 }
 
 function changeTextToEmoji(text){
-  let newText
-  getPostData(text).then(post => {
+  return getPostData(text).then(post => {
     let rendered = renderPost(post);
-    newText = rendered;
-    console.log(rendered);
-    console.log(newText)
+    return rendered
+  }).then(function(rendered) {
+    return rendered
+
   });
-  getvals().then(response => console.log(response));
 };
 
-console.log(changeTextToEmoji("Here is an emoji :smile:"))
+
 
 function playAudio(url) {
   new Audio(url).play();
