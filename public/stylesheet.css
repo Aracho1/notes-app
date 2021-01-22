@@ -82,6 +82,10 @@ textarea {
   /* margin-left: 400px; */
 }
 
+button:hover{
+  text-decoration: underline;
+}
+
 
 /* Style the tab content */
 .tabcontent {
