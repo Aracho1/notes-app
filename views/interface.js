@@ -4,7 +4,7 @@ let notebook = [];
 let id = 0;
 
 document.getElementById("create-note").onclick = function() {
-    // playAudio("sheep.mp3");
+    playAudio('./views/sheep.mp3');
     let note = new Note;
     id++;
     let noteId = id;
@@ -67,9 +67,11 @@ function changeTextToEmoji(text){
   });
 };
 
-
-
 function playAudio(url) {
+  new Audio(url).play();
+}
+
+function playScribbleSound(url) {
   new Audio(url).play();
 }
 
