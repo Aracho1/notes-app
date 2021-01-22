@@ -1,10 +1,28 @@
 
 
-let notebook = [];
 let id = 0;
 
+if (localStorage.length > 0) {
+  for (let i = 1; i <= localStorage.length; i++) {
+    var json = JSON.parse(localStorage[i])
+    var title = json["title"]
+    var content = json["content"]
+
+    console.log(title);
+    console.log(content);
+    // var title = note.title
+    // console.log(title)
+    var entry = document.createElement('button')
+    entry.setAttribute("id", i);
+    entry.setAttribute("onclick", `showFullNoteOnClick(${i})`)
+    entry.appendChild(document.createTextNode(title));
+    document.getElementById("list").appendChild(entry);
+    document.getElementById("myText").value = "";
+  }
+}
+
+
 document.getElementById("create-note").onclick = function() {
-    // playAudio("sheep.mp3");
     let note = new Note;
     id++;
     let noteId = id;
@@ -16,7 +34,8 @@ document.getElementById("create-note").onclick = function() {
       var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
       var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
       var dateTime = date+' '+time;
-      addToNoteBook(noteId, noteTitle, result, dateTime)
+      var notebook = {'title': noteTitle, 'content': noteText, 'time': dateTime }
+      localStorage.setItem(noteId, JSON.stringify(notebook))
       var entry = document.createElement('button')
       entry.setAttribute("id", noteId);
       entry.setAttribute("onclick", `showFullNoteOnClick(${noteId})`)
@@ -24,17 +43,14 @@ document.getElementById("create-note").onclick = function() {
       document.getElementById("list").appendChild(entry);
       document.getElementById("myText").value = "";
     });
- 
 
 }
 function showFullNoteOnClick(noteId){
     let cont = document.getElementById("content")
     cont.innerHTML = ''
-    var fullContent = findNote(noteId)
-    var found = findNote(noteId)
-    let text = found['content']
-    // 
-    let time = found['time']
+    let found = findNote(noteId)
+    let time = found.time
+    let text = found.content
     let div = document.createElement('div')
     let element = document.createElement('p');
     div.appendChild(element);
@@ -50,11 +66,8 @@ function addToNoteBook(noteId, title, content, time) {
 
 
 function findNote(id){
-  for(var i = 0; i < notebook.length; i++) {
-    if (notebook[i]['id'] == id) {
-      return notebook[i]
-    }
-  }
+  var notes = JSON.parse(localStorage.getItem(id));
+  return notes;
 }
 
 function changeTextToEmoji(text){
@@ -66,8 +79,6 @@ function changeTextToEmoji(text){
 
   });
 };
-
-
 
 function playAudio(url) {
   new Audio(url).play();
