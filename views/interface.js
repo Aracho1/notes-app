@@ -70,9 +70,14 @@ function changeTextToEmoji(text){
 function playAudio(url) {
   new Audio(url).play();
 }
+let scribble = new Audio('./views/scribble.mp3');
 
-function playScribbleSound(url) {
-  new Audio(url).play();
+function playScribbleSound() {
+  scribble.play();
+}
+
+function pauseScribbleSound(url) {
+  scribble.pause();
 }
 
 function getPostData(wholeText) {
