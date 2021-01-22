@@ -1,47 +1,50 @@
+html { 
+  background: url(notebook.jpeg) no-repeat top center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
 body {
-  /* text-align: center; */
-  /* linear-gradient(-45deg, #a35943, #bd9043a6, #2d97bea2, #2eac8fa8),  */
-  background-image: url(notebook.jpeg);
-  background-size: 100%;
-  /* animation: gradient 10s ease infinite; */
   font-family: 'Indie Flower', cursive;
+
 }
 
 .innerbody {
-  margin: 100px 300px;
+  height: 70%;
+  width: 60%;
+  margin-top: 100%;
+  margin: auto;
   padding: 50px;
-  float: left;
+  padding-left: 100px;
+  overflow: hidden;
 }
 
 h1 {
-  font-size: 50px;
+  font-size: 3vw;
   font-weight: bold;
   font-family: 'Indie Flower', cursive;
-}
-
-@keyframes gradient {
-	0% {
-		background-position: 75% 75%, 0% 0%;
-	}
-	50% {
-		background-position: 25% 25%, 0% 0%;
-	}
-	100% {
-		background-position: 75% 75%, 0% 0%;
-	}
+  display: inline;
 }
 
 .tab {
-  font-size: 0px;
   padding-top: 0px;
-  /* width: 30%; */
-  /* border: 1px solid #ccc;*/
-  /* width: 30%;
-  height: 300px; */
-  /* overflow-y: scroll; */
+
   border-radius: 5px;
-  position: absolute;
-  top: 500px;
+  top: 10%;
+  margin: 0;
+  padding: 0;
+  width: 200px;
+}
+
+ul#list{
+  padding: 0;
+  display: inline;
+  text-align: left;
+  /* width: 10px; */
+  float: left;
+
 }
 
 button {
@@ -57,66 +60,62 @@ textarea {
   background: transparent;
   width: 60%;
   border: none;
-  font-size: 20px;
+  font-size: 1vw;
 
 }
 
-textarea:focus {outline: none; }
 
-#list {
-  display: inline-block;
-  padding-left: 0;
-  /* width: 10%; */
-}
 
 .tab button {
   display: inline-block;
-  /* background-color: rgb(255, 255, 255); */
   color: black;
-  padding: 20px 0px;
-  width: 100%;
+  /* padding: 20px 0px; */
+  /* width: 100%; */
   border: none;
   outline: none;
-  text-align: left;
-  cursor: pointer;
-  transition: 0.3s;
-  font-size: 20px; 
+  /* text-align: left; */
+  cursor: grab;
+  /* transition: 0.3s; */
+  font-size: 2vw; 
   font-weight: bold;
-  border-radius: 5px;
-  margin-left: 400px;
+  /* border-radius: 5px; */
+  /* margin-left: 400px; */
 }
 
 
 /* Style the tab content */
 .tabcontent {
-  position: absolute;
-  top: 300px;
-  right: 300px;
-  /* background-color: #ffffff8e; */
-  /* float: left; */
-  padding: 0px 12px;
-  /* border: 1px solid #ccc; */
-  width: 25%;
-  border-left: none;
-  height: 300px;
-  /* overflow-y: scroll; */
-  border-radius: 5px;
-  margin-left: 500px;
+  padding: 0;
+  width: 100%;
+  min-width: 200px;
+  min-height: 200px;
 }
 
-ul {
-  padding-top: 0px;
-  padding-left: 0px;
+#content{
+  /* width: 10%; */
+  /* overflow: hidden; */
+  /* float: right; */
+  padding-left: 60%;
+  max-height: 400px;
 }
 
-button#1{
-  background-color: none;
+button {
+  display: block;
+  border: none;
+  margin-top: 20px;
+  font-size: 1.5vw;
+}
+
+input:focus, textarea:focus, select:focus, button:focus{
+  outline:none;
 }
 
 #create-note {
   display:block;
+  border: 1px solid black;
+  font-size: 1vw;
 }
 
 p {
-  font-size: 20px;
+  font-size: 1.5vw;
 }
