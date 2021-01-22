@@ -41,6 +41,9 @@ ul#list{
   display: inline;
   text-align: left;
   float: left;
+  height: 300px;
+  width: 40%;
+  overflow-y: scroll;
 
 }
 
@@ -80,15 +83,19 @@ button:hover{
 
 /* Style the tab content */
 .tabcontent {
-  padding: 0;
-  width: 100%;
+  position: relative;
+  top: -50px;
+  padding: 12%;
   min-width: 200px;
   min-height: 200px;
 }
 
 #content{
-  padding-left: 60%;
-  max-height: 400px;
+  top: -100px;
+  position: relative;
+  padding-left: 5%;
+  max-height: 450px;
+  overflow-y: scroll;
 }
 
 button {
@@ -103,7 +110,7 @@ input:focus, textarea:focus, select:focus, button:focus{
 }
 
 #create-note {
-  display:block;
+  display: inline-block;
   border: 1px solid black;
   font-size: 1vw;
 }

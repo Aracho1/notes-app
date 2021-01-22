@@ -5,28 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../public/stylesheet.css">
+    <link rel="stylesheet" href="public/stylesheet.css">
     <title>Sheep Note</title>
 </head>
     <body>
-                    <img src="notebook.jpeg" class="bg" alt="">
+        <img src="notebook.jpeg" class="bg" alt="">
         
         <div class='innerbody'>
-        <h1>To do</h1>
-        <div id='main'></div>
-        <textarea rows="3" cols="30" name="comment" form="usrform" id="myText" placeholder='Write it all down...'></textarea><br><br>
-        <button id="create-note">Create</button>
-        <br>
+            <h1>To do</h1>
+            <br>
+            <textarea rows="3" cols="30" name="comment" form="usrform" id="myText" placeholder='Write it all down...'></textarea><br><br>
+            <button id="create-note">Create</button>
+            <br>
 
-        <div class="list-wrapper">
-            <ul id="list"></ul>
-        </div>
+            <div class="list-wrapper">
+                <ul id="list"></ul>
+            </div>
 
-        <div id='content'>
-
+            <div id='content'></div>
         </div>
-        </div>
-        <script src="../src/notes.js"></script>
+        <script src="src/notes.js"></script>
         <script src="views/interface.js"></script>
     
     </body>
