@@ -1,92 +1,113 @@
+html { 
+  background: url(notebook.jpeg) no-repeat top center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
 body {
-  text-align: center;
-  background-image: linear-gradient(-45deg, #a35943, #bd9043a6, #2d97bea2, #2eac8fa8), url("notes_background.png");
-  background-size: 2000px 4000px, cover;
-  animation: gradient 10s ease infinite;
+  font-family: 'Indie Flower', cursive;
+
+}
+
+.innerbody {
+  height: 70%;
+  width: 60%;
+  margin-top: 100%;
+  margin: auto;
+  padding: 50px;
+  padding-left: 100px;
+  overflow: hidden;
 }
 
 h1 {
-  font-size: 50px;
+  font-size: 3vw;
   font-weight: bold;
-}
-
-@keyframes gradient {
-	0% {
-		background-position: 75% 75%, 0% 0%;
-	}
-	50% {
-		background-position: 25% 25%, 0% 0%;
-	}
-	100% {
-		background-position: 75% 75%, 0% 0%;
-	}
+  font-family: 'Indie Flower', cursive;
+  display: inline;
 }
 
 .tab {
-  font-size: 0px;
-  /* display: inline-block; */
   padding-top: 0px;
+  top: 10%;
+  margin: 0;
+  padding: 0;
+  width: 200px;
+}
+
+ul#list{
+  padding: 0;
+  display: inline;
+  text-align: left;
   float: left;
-  border: 1px solid #ccc;
-  background-color: #f1f1f192;
-  width: 30%;
-  height: 300px;
-  overflow-y: scroll;
-  border-radius: 5px;
+
 }
 
 button {
   float: center;
   border-radius: 8px;
+  background-color: transparent;
+  font-family: 'Indie Flower', cursive;
 }
+
+
 textarea {
-  background-color: #ffffff8e;
-  width: 30%;
-  border-radius: 5px;
+  left: 0;
+  background: transparent;
+  width: 40%;
+  border: none;
+  font-size: 1vw;
+
 }
+
+
 
 .tab button {
-  /* display: inline-block; */
-  background-color: rgb(255, 255, 255);
+  display: inline-block;
   color: black;
-  padding: 20px 20px;
-  width: 100%;
   border: none;
   outline: none;
-  text-align: left;
-  cursor: pointer;
-  transition: 0.3s;
-  font-size: 20px; 
+  cursor: grab;
+  font-size: 2vw; 
   font-weight: bold;
-  border-radius: 5px;
 }
 
-.tab button:hover {
-  background-color: rgba(244, 241, 98, 0.708);
+button:hover{
+  text-decoration: underline;
 }
 
-.tab button.active {
-  background-color: rgb(125, 123, 7);
-}
 
 /* Style the tab content */
 .tabcontent {
-  background-color: #ffffff8e;
-  float: left;
-  padding: 0px 12px;
-  border: 1px solid #ccc;
-  width: 50%;
-  border-left: none;
-  height: 300px;
-  overflow-y: scroll;
-  border-radius: 5px;
+  padding: 0;
+  width: 100%;
+  min-width: 200px;
+  min-height: 200px;
 }
 
-ul {
-  padding-top: 0px;
-  padding-left: 0px;
+#content{
+  padding-left: 60%;
+  max-height: 400px;
+}
+
+button {
+  display: block;
+  border: none;
+  margin-top: 20px;
+  font-size: 1.5vw;
+}
+
+input:focus, textarea:focus, select:focus, button:focus{
+  outline:none;
 }
 
 #create-note {
   display:block;
+  border: 1px solid black;
+  font-size: 1vw;
+}
+
+p {
+  font-size: 1.5vw;
 }

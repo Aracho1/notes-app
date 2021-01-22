@@ -1,58 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    
-    <script>
-        function getPostData() {
-            return fetch("https://makers-emojify.herokuapp.com/", {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({"text": ":smile:"})})
-            .then(response => {
-                console.log("1")
-                console.log(response.json)
-                return response.json();
-            })
-            .catch((error) => {
-                console.log("4");
-                console.error('Error:', error);
-            });
-        }
-
-        function renderPost(postData) {
-            console.log("3")
-            console.log(postData)
-            let postHeadingHTML = `<h1>${postData.emojified_text}</h1>`;
-            return `${postHeadingHTML}`;
-        }
-
-        getPostData().then(post => {
-            console.log("2")
-            console.log(post);
-        let rendered = renderPost(post);
-        document.getElementById("main").innerHTML = rendered;
-        });    
-        
-    </script>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../public/stylesheet.css">
     <title>Document</title>
 </head>
     <body>
-        <h1> Notes </h1>
+                    <img src="notebook.jpeg" class="bg" alt="">
+        
+        <div class='innerbody'>
+        <h1>To do</h1>
+        <div id='main'></div>
+        <textarea rows="3" cols="30" name="comment" form="usrform" id="myText" placeholder='Write it all down...'></textarea><br><br>
+        <button id="create-note">Create</button>
+        <br>
 
-        <div id="main">
+        <div class="list-wrapper">
+            <ul id="list"></ul>
         </div>
 
-            <textarea rows="4" cols="50" name="comment" form="usrform" id="myText" onkeypress="searchString()">Enter text here...</textarea><br><br>
+        <div id='content'>
 
-            <button id="create-note">Create</button>
-
-            <ul id="list"></ul>
-            <ul id='content'></ul>
-        <script src="src/notes.js"></script>
+        </div>
+        </div>
+        <script src="../src/notes.js"></script>
         <script src="views/interface.js"></script>
-
-       
-
+    
     </body>
 </html>
