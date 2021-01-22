@@ -30,8 +30,6 @@ h1 {
 
 .tab {
   padding-top: 0px;
-
-  border-radius: 5px;
   top: 10%;
   margin: 0;
   padding: 0;
@@ -42,7 +40,6 @@ ul#list{
   padding: 0;
   display: inline;
   text-align: left;
-  /* width: 10px; */
   float: left;
 
 }
@@ -69,17 +66,11 @@ textarea {
 .tab button {
   display: inline-block;
   color: black;
-  /* padding: 20px 0px; */
-  /* width: 100%; */
   border: none;
   outline: none;
-  /* text-align: left; */
   cursor: grab;
-  /* transition: 0.3s; */
   font-size: 2vw; 
   font-weight: bold;
-  /* border-radius: 5px; */
-  /* margin-left: 400px; */
 }
 
 button:hover{
@@ -96,9 +87,6 @@ button:hover{
 }
 
 #content{
-  /* width: 10%; */
-  /* overflow: hidden; */
-  /* float: right; */
   padding-left: 60%;
   max-height: 400px;
 }

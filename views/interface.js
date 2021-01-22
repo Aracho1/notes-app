@@ -22,7 +22,9 @@ document.getElementById("create-note").onclick = function() {
     entry.appendChild(document.createTextNode(noteTitle));
     document.getElementById("list").appendChild(entry);
     document.getElementById("myText").value = "";
-
+    console.log(localStorage.setItem(noteId, noteText))
+    console.log(localStorage)
+    
     
 
 }
@@ -48,9 +50,10 @@ function addToNoteBook(noteId, title, content, time) {
 
 
 function findNote(id){
-  for(var i = 0; i < notebook.length; i++) {
-    if (notebook[i]['id'] == id) {
-      return notebook[i]
+  var localNote = localStorage.getItem(localNote)
+  for(var i = 0; i < localNote.length; i++) {
+    if ((localNote)[i]['id'] == id) {
+      localStorage.getItem(localNote[i])
     }
   }
 }
