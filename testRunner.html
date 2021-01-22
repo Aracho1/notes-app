@@ -24,5 +24,18 @@
 
   <script src="spec/notesSpec.js"></script>
 
+  <script>
+    onload=changeColour();
+
+    function changeColour() {
+    var str = document.getElementById("result").innerHTML;
+    var res = str.replace(new RegExp("Pass", "g"), "<span style='color:green'>Pass</span>");
+    document.getElementById("result").innerHTML = res;
+    var str1 = document.getElementById("result").innerHTML;
+    var res1 = str1.replace(new RegExp("Fail", "g"), "<span style='color:red'>Fail</span>");
+    document.getElementById("result").innerHTML = res1;
+}
+  </script> 
+
 </body>
 </html>
