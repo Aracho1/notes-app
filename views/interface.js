@@ -34,15 +34,13 @@ function showFullNoteOnClick(noteId){
     var found = findNote(noteId)
     let text = found['content']
     // 
-    var emojifiedText = changeTextToEmoji(text).then(function(result) {
-      let time = found['time']
-      let div = document.createElement('div')
-      let element = document.createElement('p');
-      div.appendChild(element);
-      div.setAttribute("class", "tabcontent")
-      element.innerHTML =  "<p>"+result+"</p>" + time
-      cont.appendChild(div);
-    })
+    let time = found['time']
+    let div = document.createElement('div')
+    let element = document.createElement('p');
+    div.appendChild(element);
+    div.setAttribute("class", "tabcontent")
+    element.innerHTML =  "<p>"+text+"</p>" + time
+    cont.appendChild(div);
 };
 
 
