@@ -4,7 +4,7 @@ let notebook = [];
 let id = 0;
 
 document.getElementById("create-note").onclick = function() {
-    playAudio('sheep.mp3');
+    // playAudio("sheep.mp3");
     let note = new Note;
     id++;
     let noteId = id;
@@ -32,12 +32,15 @@ function showFullNoteOnClick(noteId){
     var fullContent = findNote(noteId)
     var found = findNote(noteId)
     let text = found['content']
+    console.log(text)
+    let emojifiedText = changeTextToEmoji(text)
+    console.log(emojifiedText)
     let time = found['time']
     let div = document.createElement('div')
     let element = document.createElement('p');
     div.appendChild(element);
     div.setAttribute("class", "tabcontent")
-    element.innerHTML =  "<p>"+text+"</p>" + time
+    element.innerHTML =  "<p>"+emojifiedText+"</p>" + time
     cont.appendChild(div);
 };
 
@@ -55,33 +58,31 @@ function findNote(id){
   }
 }
 
-function getPostData() {
-    return fetch("https://makers-emojify.herokuapp.com/", {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({"text": ""})})
-    .then(response => {
-        console.log("1")
-        console.log(response.json)
-        return response.json();
-    })
-    .catch((error) => {
-        console.log("4");
-        console.error('Error:', error);
-    });
-}
+function changeTextToEmoji(text){
+  let newText
+  getPostData(text).then(post => {
+    let rendered = renderPost(post);
+    newText = rendered;
+    console.log(rendered);
+    console.log(newText)
+  });
+  getvals().then(response => console.log(response));
+};
 
-function renderPost(postData) {
-    console.log("3")
-    console.log(postData)
-    let postHeadingHTML = `<h1>${postData.emojified_text}</h1>`;
-    return `${postHeadingHTML}`;
-}
-
-getPostData().then(post => {
-    console.log("2")
-    console.log(post);
-let rendered = renderPost(post);
-document.getElementById("main").innerHTML = rendered;
-});    
+console.log(changeTextToEmoji("Here is an emoji :smile:"))
 
 function playAudio(url) {
   new Audio(url).play();
+}
+
+function getPostData(wholeText) {
+  return fetch("https://makers-emojify.herokuapp.com/", {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({"text": `${wholeText}`})})
+  .then(response => {
+      return response.json();
+  })
+}
+
+function renderPost(postData) {
+  let postHeadingHTML = postData.emojified_text;
+  return `${postHeadingHTML}`;
 }
