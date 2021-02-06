@@ -1,5 +1,8 @@
 # notes-app
 
+http://sheep-notes.surge.sh/
+A front-end app where users can make notes
+
 ## User Stories
 
 
